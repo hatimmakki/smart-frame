@@ -1,0 +1,43 @@
+---
+name: Button
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import  { Button } from './index';
+import { ButtonWrapper, InputWrapper } from "./Button.style";
+
+# Button
+## Properties
+<Props of={Button} />
+
+## Basic usage
+
+<Playground>
+  <div>
+     <Button color="primary" size="sm" marginRight={true}>Primary Button</Button>
+     <Button color="primary" size="md">Primary Button</Button>
+    <Button color="primary" size="lg">Primary Button</Button>
+
+  </div>
+  <div>
+    <Button color="secondary" size="sm">Secondary Button</Button>
+    <Button color="secondary" size="md">Secondary Button</Button>
+    <Button color="secondary" size="lg">Secondary Button</Button>
+    </div>
+    <div>
+
+    <Button color="tertiary1" size="sm">Tertiary Button</Button>
+    <Button color="tertiary1" size="md">Tertiary Button</Button>
+    <Button color="tertiary1" size="lg">Tertiary Button</Button>
+      </div>
+  <div>
+    <Button variant="link">test Link</Button>
+  </div>
+</Playground>
+
+
+
+
+
+

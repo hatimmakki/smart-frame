@@ -1,28 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { Col, Row } from 'react-grid-system';
+
 import './App.css';
+import Loader from './Components/Atom/Loader';
+import GalleryScreen from './Components/Organisms/GalleryScreen';
+import NoArtworkView from './Components/Organisms/NoArtworkView';
 import { APIManager } from './Services/APIManager/APIManager';
 
 function App() {
 
-  const [artworks, setArtworks] = useState();
-  
-  const onReturn = (artworks: []) => {
-    console.log('ids', artworks)
+  /////// PROPERTIES
 
-  }
+  const [artworks, setArtworks] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  /////// UseEffects
 
   useEffect(() => {
-      APIManager.getRandomArtworks(10, onReturn)
+      setLoading(true);
+      laodImages();
+
   }, []);
 
+  const laodImages = () => {
+    APIManager.getRandomArtworks(10, onReturnedArtworks);
+  }
+
+
+  /////// CALLBACKS
+
+  const onReloadClicked = () => {
+    laodImages();
+  }
+
+  const onReturnedArtworks = (artworksList: []) => {
+    setArtworks(artworksList);
+    setLoading(false);
+  }
+
+  
   return (
-    <div className="App">
-      {!artworks && {
-        // Show loader
-      }}
-      
-    </div>
+      <Row>
+        <Col md={12} className="center">
+
+        {artworks?.length === 0 && !loading && (
+          <NoArtworkView onReloadClicked={onReloadClicked} />
+        )}
+      {loading && (
+        <Loader />
+      )}
+      {artworks?.length > 0 && !loading && (
+        <GalleryScreen images={artworks}/>
+      )}
+
+
+        </Col>
+      </Row>
   );
 }
 
