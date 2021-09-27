@@ -43,7 +43,7 @@ const GalleryScreen = ({ images }) => {
   const [currentImage, setCurrentImage] = useState({});
   const { start, pause } = useTimer({
     onTimeUpdate: (time) => {
-      if (time % 10 == 0 && time !== 0) {
+      if (time % 10 === 0 && time !== 0) {
         // every 10 seconds
         setCurrentImageIndex((t) => t >= images.length - 1 ? 0 : t + 1);
       }
@@ -59,7 +59,7 @@ const GalleryScreen = ({ images }) => {
 
     const id = e.target.id;
     const imageObject = images.find(image => {
-      return image.objectID == id;
+      return image.objectID === id;
     });
     if (!!imageObject) {
       setCurrentImage(imageObject)

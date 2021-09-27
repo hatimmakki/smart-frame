@@ -19,13 +19,13 @@ const InfoModal = ({ artwork, handleClose, visible }) => {
             <CloseIcon />
           </ButtonBase>
           <Col md={12}>
-            <H1 className="department">{artwork?.department}</H1>
+            {artwork?.department && <H1 className="department">{artwork?.department}</H1>}
           </Col>
           <Col md={10} push={{ md: 1 }}>
-            <H1 className="color-white">{artwork?.title}</H1>
-            <Body1 className="color-white">{artwork?.creditLine}</Body1>
-            <Body1 className="color-white">({artwork?.medium})</Body1>
-            <Body2 className="color-white">{artwork?.repository}</Body2>
+            {artwork?.title && <H1 className="color-white">{artwork?.title}</H1>}
+            {artwork?.creditLine && <Body1 className="color-white">{artwork?.creditLine}</Body1>}
+            {artwork?.medium && <Body1 className="color-white">({artwork?.medium})</Body1>}
+            {artwork?.repository && <Body2 className="color-white">{artwork?.repository}</Body2>}
           </Col>
         </Row>
       </Container>
