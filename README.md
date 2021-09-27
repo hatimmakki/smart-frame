@@ -10,10 +10,9 @@ Because the app is run on localhost, the API sometimes ban the IP if there are a
 So the solution was to provide dummy data, only in case the re is a network error.
 
 - If the app doesn't work fine because of the API errors, just replace APIManager.getRandomArtworks in App file, with APIManager.getDummyArtworks
+- for simplicity, the API urls saved in the constants js file instead of env variables.
 
-
-
-## Available Scripts
+## Run the app
 
 In the project directory, you can run:
 
