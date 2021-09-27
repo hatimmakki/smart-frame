@@ -1,28 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { Col, Row } from 'react-grid-system';
+
 import './App.css';
+import GalleryScreen from './Components/Organisms/GalleryScreen';
+import NoArtworkView from './Components/Organisms/NoArtworkView';
 import { APIManager } from './Services/APIManager/APIManager';
 
 function App() {
 
-  const [artworks, setArtworks] = useState();
+  const [artworks, setArtworks] = useState([]);
   
-  const onReturn = (artworks: []) => {
-    console.log('ids', artworks)
+  const onReturn = (artworksList: []) => {
+    console.log(artworksList)
+    //setArtworks(artworksList);
+
 
   }
 
   useEffect(() => {
-      APIManager.getDummyArtworks(onReturn)
+      APIManager.getDummyArtworks(onReturn);
   }, []);
 
   return (
-    <div className="App">
-      {!artworks && {
-        // Show loader
-      }}
-      
-    </div>
+      <Row>
+        <Col md={12} className="center">
+
+          {artworks?.length > 0 ? (
+            <GalleryScreen images={artworks}/>
+          ) : (
+            <NoArtworkView />
+          )}
+
+        </Col>
+      </Row>
   );
 }
 

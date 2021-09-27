@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component matches snapshot 1`] = `
+<button
+  className="sc-bdVaJa gqlyDy"
+  color="primary"
+  data-testid="button"
+  size="md"
+>
+  save
+  <svg
+    fill="none"
+    height={14}
+    width={8}
+  >
+    <path
+      d="M1 13l6-6-6-6"
+      stroke="#2E307F"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+</button>
+`;
+
+exports[`matches snapshot 1`] = `
+<button
+  className="sc-bdVaJa gqlyDy"
+  color="primary"
+  data-testid="button"
+  size="md"
+>
+  save
+  <svg
+    fill="none"
+    height={14}
+    width={8}
+  >
+    <path
+      d="M1 13l6-6-6-6"
+      stroke="#2E307F"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+</button>
+`;
