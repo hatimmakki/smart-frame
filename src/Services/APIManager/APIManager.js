@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { sleep } from '../../Utils/utils';
 
 export var APIManager = {
+
 
     /**
      * This function returns a random number of artworks
@@ -8,10 +10,11 @@ export var APIManager = {
      * @param {*} onReturn a callback function that returns a list of artwork objects
      */
     getRandomArtworks: function (numberOfArtworks = 10, onReturn) {
-        axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&medium=Paintings&departmentId=9&q=Painting`,
+        axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&departmentId=9&q=Painting`,
             {
                 headers: {
                     'Access-Control-Allow-Origin': '*'
+
                 }
             }
         ).then((response) => {
@@ -23,18 +26,40 @@ export var APIManager = {
             let ids2 = shuffled.slice(0, numberOfArtworks);
 
             // TODO: this is a bad practice and must change in future, if the API provided a way to fetch multiple objects with one call
-            let list = [];
+            let listOfRequests = [];
             ids2.forEach(id => {
-                console.log(id)
-                setTimeout(() => {
-                    // make request every 100 ms to prevent to be banned from the API server
-                    this.getArtwork(id, function (art) {
-                        list.push(art);
-                    })
-                }, 500);
+                // collect axios requests
+                listOfRequests.push(axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`,
+                    {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*'
+
+                        }
+                    }));
             });
 
-            if (!!onReturn) onReturn(list)
+            // run the collected requests
+            axios.all(listOfRequests).then(axios.spread((...responses) => {
+                let arrayOfArtworks = []
+                responses.forEach(response => {
+                    if (response.data) arrayOfArtworks.push(response.data);
+                });
+                if (!!onReturn) onReturn(arrayOfArtworks);
+                // use/access the results 
+            })).catch(errors => {
+                // react on errors.
+                console.log(errors)
+            })
+
+        }).catch(errors => {
+            // react on errors.
+            console.log(errors.message);
+
+            // return dummy data if there is a network error
+            this.getDummyArtworks((artworks) => {
+                onReturn(artworks);
+            })
+
         })
     },
 

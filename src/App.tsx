@@ -8,19 +8,33 @@ import { APIManager } from './Services/APIManager/APIManager';
 
 function App() {
 
+  /////// PROPERTIES
+
   const [artworks, setArtworks] = useState([]);
   
-  const onReturn = (artworksList: []) => {
-    console.log(artworksList)
-    //setArtworks(artworksList);
 
+  /////// UseEffects
+
+  useEffect(() => {
+      //APIManager.getDummyArtworks(onReturnedArtworks);
+      APIManager.getRandomArtworks(10, onReturnedArtworks);
+
+  }, []);
+
+
+  /////// CALLBACKS
+
+  const onReloadClicked = () => {
 
   }
 
-  useEffect(() => {
-      APIManager.getDummyArtworks(onReturn);
-  }, []);
+  const onReturnedArtworks = (artworksList: []) => {
+    console.log(artworksList)
+    setArtworks(artworksList);
 
+  }
+
+  
   return (
       <Row>
         <Col md={12} className="center">
@@ -28,7 +42,7 @@ function App() {
           {artworks?.length > 0 ? (
             <GalleryScreen images={artworks}/>
           ) : (
-            <NoArtworkView />
+            <NoArtworkView onReloadClicked={onReloadClicked} />
           )}
 
         </Col>

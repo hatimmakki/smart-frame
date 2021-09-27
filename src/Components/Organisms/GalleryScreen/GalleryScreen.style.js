@@ -1,5 +1,4 @@
 import style, { css } from "styled-components";
-import { fontSize, colors, device } from "../../styles/settings";
 
 function galleryScreenStyle() {
   return css`
@@ -20,10 +19,19 @@ function galleryScreenStyle() {
       visibility: visible;
       opacity: 1;
       transition: visibility 0.4s, opacity 0.4qs linear;
-
     }
   }
 
+  .visible {
+    transition: bottom 0.4s ease 0s; 
+
+    bottom: 0px !important;
+  }
+
+  .hidden {
+    transition: bottom 0.4s ease 0s; 
+    bottom: -400;
+  }
 
   `;
 }
