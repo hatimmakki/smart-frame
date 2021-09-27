@@ -14,12 +14,20 @@ function galleryScreenStyle() {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.4s, opacity 0.4s linear;
+    transition: height 0.8s ease 0s;
 
     &.active {
       visibility: visible;
       opacity: 1;
       transition: visibility 0.4s, opacity 0.4qs linear;
     }
+
+    &.focussed {
+      height: 78%;
+      transition: height 0.5s ease 0s;;
+
+    }    
+
   }
 
   .visible {

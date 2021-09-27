@@ -56,11 +56,11 @@ const GalleryScreen = ({ images }) => {
     // pause the timer
     pause();
 
-
     const id = e.target.id;
     const imageObject = images.find(image => {
-      return image.objectID === id;
+      return image.objectID == id;
     });
+
     if (!!imageObject) {
       setCurrentImage(imageObject)
       showInfo(imageObject);
@@ -84,7 +84,7 @@ const GalleryScreen = ({ images }) => {
     return (
       <Image
         onClick={handleImageClick}
-        className={className}
+        className={`${className} ${showInfoModal ? 'focussed' : 'not-focussed'}`}
         key={img?.objectID}
         id={img?.objectID}
         src={img?.primaryImageSmall} />
