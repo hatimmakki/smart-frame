@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { APIManager } from './Services/APIManager/APIManager';
 
 function App() {
+
+  const [artworks, setArtworks] = useState();
+  
+  const onReturn = (artworks: []) => {
+    console.log('ids', artworks)
+
+  }
+
+  useEffect(() => {
+      APIManager.getRandomArtworks(10, onReturn)
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!artworks && {
+        // Show loader
+      }}
+      
     </div>
   );
 }
