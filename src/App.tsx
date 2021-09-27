@@ -13,7 +13,7 @@ function App() {
   }
 
   useEffect(() => {
-      APIManager.getRandomArtworks(10, onReturn)
+      APIManager.getDummyArtworks(onReturn)
   }, []);
 
   return (
