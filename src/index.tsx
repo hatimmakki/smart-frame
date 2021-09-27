@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// The API URL is required
+if (!process.env.REACT_APP_API_URL)
+  throw new Error(
+    "The REACT_APP_API_URL environment variable is required but was not specified."
+  );
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
