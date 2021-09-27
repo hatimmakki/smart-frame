@@ -8,7 +8,7 @@ const GalleryScreen = ({ onReloadClicked }) => {
 
   return (
     <NoArtworkViewWrapperStyled>
-      <H1>There are no artworks no display</H1>
+      <H1>There are no artworks to display</H1>
       <Button onClick={onReloadClicked} >Reload</Button>
     </NoArtworkViewWrapperStyled>
   );

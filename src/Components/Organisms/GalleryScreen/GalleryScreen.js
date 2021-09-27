@@ -1,14 +1,10 @@
 import PropTypes from "prop-types";
-import { useMediaQuery } from "react-responsive";
 import { useTimer } from 'use-timer';
+import { useEffect, useState } from "react";
+import { Image } from "react-bootstrap";
 
 import { GalleryScreenWrapperStyled } from "./GalleryScreen.style";
-import { deviceSize } from "../../styles/settings";
-import { useEffect, useState } from "react";
-import { Col, Image, Row } from "react-bootstrap";
-import { Body1, H1, Span } from "../../Atom/Typography";
 import InfoModal from "./InfoModal";
-import { RecurringTimer } from "../../../Utils/utils";
 /**
  * This gallery screen shows a full screen images gallery
  *  every image passed to this component must be in the following structure:
@@ -45,14 +41,12 @@ const GalleryScreen = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [currentImage, setCurrentImage] = useState({});
-  const [isPaused, setIsPaused] = useState(false);
-  const { time, start, pause, reset, status } = useTimer({
+  const { start, pause } = useTimer({
     onTimeUpdate: (time) => {
       if (time % 10 == 0 && time !== 0) {
         // every 10 seconds
         setCurrentImageIndex((t) => t >= images.length - 1 ? 0 : t + 1);
       }
-      console.log('Time is updated', time);
     },
   });
 
@@ -108,7 +102,7 @@ const GalleryScreen = ({ images }) => {
   return (
     <GalleryScreenWrapperStyled>
       {listOfImages}
-      <InfoModal visible={showInfoModal && currentImage} artwork={currentImage} handleClose={handleCloseModal} />
+      <InfoModal visible={showInfoModal} artwork={currentImage} handleClose={handleCloseModal} />
     </GalleryScreenWrapperStyled>
   );
 };
