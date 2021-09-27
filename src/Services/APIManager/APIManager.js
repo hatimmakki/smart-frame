@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL, API_URL_OBJECT } from '../../Utils/constants';
 
 export var APIManager = {
 
@@ -9,7 +10,7 @@ export var APIManager = {
      * @param {*} onReturn a callback function that returns a list of artwork objects
      */
     getRandomArtworks: function (numberOfArtworks = 10, onReturn) {
-        axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&departmentId=9&q=Painting`,
+        axios.get(`${API_URL}?hasImages=true&departmentId=9&q=Painting`,
             {
                 headers: {
                     'Access-Control-Allow-Origin': '*'
@@ -28,7 +29,7 @@ export var APIManager = {
             let listOfRequests = [];
             ids2.forEach(id => {
                 // collect axios requests
-                listOfRequests.push(axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`,
+                listOfRequests.push(axios.get(`${API_URL_OBJECT}${id}`,
                     {
                         headers: {
                             'Access-Control-Allow-Origin': '*'
