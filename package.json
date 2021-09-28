@@ -44,6 +44,12 @@
       "react-app/jest"
     ]
   },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^9.5.0",
+    "check-prop-types": "^1.1.2",
+    "react-test-renderer": "^16.13.1"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
