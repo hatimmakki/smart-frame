@@ -26,4 +26,4 @@ You can view the design system on Figma [here](https://www.figma.com/file/PxvEox
 
 # Workflow
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FPxvEoxTDHmAwTWYpF20Xdi%2FSmart-Frame%3Fnode-id%3D3%253A286" allowfullscreen></iframe>
+![](https://personalstoragename.blob.core.windows.net/hatimstoragecontainer/assets/Workflow_17caeeaabe.jpg)
